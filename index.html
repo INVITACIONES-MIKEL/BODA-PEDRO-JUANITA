@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--color-principal:#c9a96e;
+--color-secundario:#ffffff;
+--color-fondo:#f8f5f2;
+--fuente-titulo:'Great Vibes', cursive;
+--fuente-texto:'Montserrat', sans-serif;
+--imagen-portada:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486');
+}
+
+body{
+margin:0;
+font-family:var(--fuente-texto);
+background:var(--color-fondo);
+color:#333;
+text-align:center;
+}
+
+.hero{
+height:100vh;
+background:var(--imagen-portada) center/cover no-repeat;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+background-color:rgba(0,0,0,0.4);
+background-blend-mode:darken;
+}
+
+.hero h1{
+font-family:var(--fuente-titulo);
+font-size:4em;
+margin:0;
+}
+
+.section{padding:60px 20px;}
+.box{
+background:white;
+padding:30px;
+border-radius:15px;
+margin:20px auto;
+max-width:700px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:10px;
+}
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:var(--color-principal);
+color:white;
+cursor:pointer;
+margin:10px;
+}
+
+iframe{border-radius:15px;}
+</style>
+</head>
+<body>
+
+<script>
+const datos={
+novios:"Carlos & Lola",
+frase:"Con la bendición de Dios y nuestros padres",
+mensaje:"Tenemos el honor de invitarte a celebrar nuestro enlace matrimonial",
+fecha:"20 de Diciembre 2026",
+hora:"5:00 PM",
+
+iglesia:"Iglesia San Tomas",
+ubicacionIglesia:"https://maps.app.goo.gl/SePGzS3RmkdhqTtP8",
+
+recepcion:"Villa Lucila",
+ubicacionRecepcion:"https://maps.app.goo.gl/Wsz6RTGhPf5f5NrM7",
+
+padrinos:"Juan Pérez y María López",
+
+whatsapp:"525654252153",
+mensajeWhats:"Confirmo mi asistencia",
+
+fotos:[
+"https://images.unsplash.com/photo-1520857014576-2c4f4c972b57",
+"https://images.unsplash.com/photo-1519741497674-611481863552",
+"https://images.unsplash.com/photo-1504198453319-5ce911bafcde"
+],
+
+musica:"https://www.bensound.com/bensound-music/bensound-romantic.mp3"
+}
+</script>
+
+<audio id="musica" autoplay loop>
+<source id="audioSource" src="">
+</audio>
+
+<div class="hero">
+<h1 id="novios"></h1>
+<p id="frase"></p>
+</div>
+
+<div class="section">
+<div class="box">
+<p id="mensaje"></p>
+<p><strong id="fecha"></strong></p>
+<p id="hora"></p>
+</div>
+</div>
+
+<div class="section">
+<div class="box">
+<h2>Ceremonia Religiosa</h2>
+<p id="iglesia"></p>
+<iframe id="mapaIglesia" width="100%" height="250"></iframe>
+</div>
+</div>
+
+<div class="section">
+<div class="box">
+<h2>Recepción</h2>
+<p id="recepcion"></p>
+<iframe id="mapaRecepcion" width="100%" height="250"></iframe>
+</div>
+</div>
+
+<div class="section">
+<div class="box">
+<h2>Padrinos</h2>
+<p id="padrinos"></p>
+</div>
+</div>
+
+<div class="section">
+<h2>Nuestra Historia</h2>
+<div class="gallery" id="gallery"></div>
+</div>
+
+<div class="section">
+<div class="box">
+<h2>Confirmar asistencia</h2>
+<button id="btnWhats">Confirmar por WhatsApp</button>
+</div>
+</div>
+
+<script>
+novios.innerText=datos.novios
+frase.innerText=datos.frase
+mensaje.innerText=datos.mensaje
+fecha.innerText=datos.fecha
+hora.innerText=datos.hora
+iglesia.innerText=datos.iglesia
+recepcion.innerText=datos.recepcion
+padrinos.innerText=datos.padrinos
+
+mapaIglesia.src=datos.ubicacionIglesia
+mapaRecepcion.src=datos.ubicacionRecepcion
+
+audioSource.src=datos.musica
+
+btnWhats.onclick=()=>{
+window.open(`https://wa.me/${datos.whatsapp}?text=${encodeURIComponent(datos.mensajeWhats)}`)
+}
+
+datos.fotos.forEach(f=>{
+const img=document.createElement("img")
+img.src=f
+
+gallery.appendChild(img)
+})
+</script>
+
+</body>
+</html>
