@@ -1,191 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación de Boda Premium</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda | Ana & Carlos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=Tenor+Sans&display=swap" rel="stylesheet">
+    
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE IMÁGENES (Dropbox raw=1)
+        // ==========================================
+        const URL_FLOR_ESQUINA_SUPERIOR = "https://www.dropbox.com/scl/fi/vq8tw8atriefphspohwzn/flor-arriba.png?rlkey=mms5pql7v1wya32p2mj1qkadu&raw=1";
+        const URL_FLOR_SEPARADOR         = "https://www.dropbox.com/scl/fi/i2pdlc7p4rhtyj2u9sz1i/flor-centro.png?rlkey=51q6xzoum0ioywybcrevhz6rm&raw=1";
+        const URL_FLOR_ESQUINA_INFERIOR = "https://www.dropbox.com/scl/fi/ufnfth79jsg6d6gxv1b92/flor-abajo.png?rlkey=mkt5wkbfzuc0ox8mpww51e5ca&raw=1";
+    </script>
 
-<style>
-:root{
---color-principal:#c9a96e;
---color-secundario:#ffffff;
---color-fondo:#f8f5f2;
---fuente-titulo:'Great Vibes', cursive;
---fuente-texto:'Montserrat', sans-serif;
---imagen-portada:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486');
-}
+    <style>
+        :root { --dorado: #bca080; --dorado-suave: rgba(188, 160, 128, 0.3); --oscuro: #1a1a1a; --crema: #fdfcf9; }
+        body { margin: 0; background: #eee; font-family: 'Tenor Sans', sans-serif; overflow-x: hidden; }
+        
+        /* WRAPPER CON BORDE DORADO ELEGANTE */
+        .wrapper { 
+            max-width: 480px; 
+            margin: 0 auto; 
+            background: var(--crema); 
+            position: relative; 
+            box-shadow: 0 0 60px rgba(0,0,0,0.15); 
+            overflow: hidden; 
+            border: 1px solid var(--dorado-suave); /* Borde de enmarcado */
+        }
+        
+        /* ADORNOS FLORALES IMPONENTES (GRANDES) */
+        .adorno-sup { 
+            position: absolute; 
+            z-index: 10; 
+            pointer-events: none; 
+            width: 450px; /* Tamaño imponente */
+            top: -80px;   /* Ajuste negativo para abrazar la esquina */
+            left: -80px; 
+            opacity: 0.9;
+        }
+        .adorno-inf { 
+            position: absolute; 
+            z-index: 10; 
+            pointer-events: none; 
+            width: 450px; /* Tamaño imponente */
+            bottom: -50px; 
+            right: -50px; 
+            opacity: 0.9;
+        }
+        
+        /* SEPARADORES MAJESTUOSOS */
+        .separador { 
+            display: block; 
+            margin: 40px auto; 
+            width: 200px; /* Separador grande y visible */
+            opacity: 0.9; 
+        }
 
-body{
-margin:0;
-font-family:var(--fuente-texto);
-background:var(--color-fondo);
-color:#333;
-text-align:center;
-}
+        /* REPRODUCTOR FLOTANTE */
+        #music-box {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: white; border: 1px solid var(--dorado);
+            padding: 12px 20px; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; align-items: center;
+        }
 
-.hero{
-height:100vh;
-background:var(--imagen-portada) center/cover no-repeat;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
-background-color:rgba(0,0,0,0.4);
-background-blend-mode:darken;
-}
+        /* PORTADA */
+        .hero { position: relative; height: 100vh; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        .hero-bg { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)), 
+            url('https://www.dropbox.com/scl/fi/pd9mjnnpuz1awyw4memr7/novios-de-frente.jpg?rlkey=fzbs6iftt0125yat387uxnbei&raw=1') center/cover; 
+            z-index: 1; 
+        }
+        .hero-text { z-index: 2; text-transform: uppercase; letter-spacing: 6px; }
+        .hero-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; margin: 15px 0; font-weight: normal; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-.hero h1{
-font-family:var(--fuente-titulo);
-font-size:4em;
-margin:0;
-}
-
-.section{padding:60px 20px;}
-.box{
-background:white;
-padding:30px;
-border-radius:15px;
-margin:20px auto;
-max-width:700px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:10px;
-}
-.gallery img{
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:10px;
-}
-
-button{
-padding:15px 30px;
-border:none;
-border-radius:30px;
-background:var(--color-principal);
-color:white;
-cursor:pointer;
-margin:10px;
-}
-
-iframe{border-radius:15px;}
-</style>
-</head>
-<body>
-
-<script>
-const datos={
-novios:"Carlos & Lola",
-frase:"Con la bendición de Dios y nuestros padres",
-mensaje:"Tenemos el honor de invitarte a celebrar nuestro enlace matrimonial",
-fecha:"20 de Diciembre 2026",
-hora:"5:00 PM",
-
-iglesia:"Iglesia San Tomas",
-ubicacionIglesia:"https://maps.app.goo.gl/SePGzS3RmkdhqTtP8",
-
-recepcion:"Villa Lucila",
-ubicacionRecepcion:"https://maps.app.goo.gl/Wsz6RTGhPf5f5NrM7",
-
-padrinos:"Juan Pérez y María López",
-
-whatsapp:"525654252153",
-mensajeWhats:"Confirmo mi asistencia",
-
-fotos:[
-"https://images.unsplash.com/photo-1520857014576-2c4f4c972b57",
-"https://images.unsplash.com/photo-1519741497674-611481863552",
-"https://images.unsplash.com/photo-1504198453319-5ce911bafcde"
-],
-
-musica:"https://www.bensound.com/bensound-music/bensound-romantic.mp3"
-}
-</script>
-
-<audio id="musica" autoplay loop>
-<source id="audioSource" src="">
-</audio>
-
-<div class="hero">
-<h1 id="novios"></h1>
-<p id="frase"></p>
-</div>
-
-<div class="section">
-<div class="box">
-<p id="mensaje"></p>
-<p><strong id="fecha"></strong></p>
-<p id="hora"></p>
-</div>
-</div>
-
-<div class="section">
-<div class="box">
-<h2>Ceremonia Religiosa</h2>
-<p id="iglesia"></p>
-<iframe id="mapaIglesia" width="100%" height="250"></iframe>
-</div>
-</div>
-
-<div class="section">
-<div class="box">
-<h2>Recepción</h2>
-<p id="recepcion"></p>
-<iframe id="mapaRecepcion" width="100%" height="250"></iframe>
-</div>
-</div>
-
-<div class="section">
-<div class="box">
-<h2>Padrinos</h2>
-<p id="padrinos"></p>
-</div>
-</div>
-
-<div class="section">
-<h2>Nuestra Historia</h2>
-<div class="gallery" id="gallery"></div>
-</div>
-
-<div class="section">
-<div class="box">
-<h2>Confirmar asistencia</h2>
-<button id="btnWhats">Confirmar por WhatsApp</button>
-</div>
-</div>
-
-<script>
-novios.innerText=datos.novios
-frase.innerText=datos.frase
-mensaje.innerText=datos.mensaje
-fecha.innerText=datos.fecha
-hora.innerText=datos.hora
-iglesia.innerText=datos.iglesia
-recepcion.innerText=datos.recepcion
-padrinos.innerText=datos.padrinos
-
-mapaIglesia.src=datos.ubicacionIglesia
-mapaRecepcion.src=datos.ubicacionRecepcion
-
-audioSource.src=datos.musica
-
-btnWhats.onclick=()=>{
-window.open(`https://wa.me/${datos.whatsapp}?text=${encodeURIComponent(datos.mensajeWhats)}`)
-}
-
-datos.fotos.forEach(f=>{
-const img=document.createElement("img")
-img.src=f
-
-gallery.appendChild(img)
-})
-</script>
-
-</body>
-</html>
+        section { padding: 80px 30px; text-align: center; position: relative; z-index: 5; }
+        .img-full { width: 100%; display: block; object-fit: cover; border-radius: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.2rem; margin-
